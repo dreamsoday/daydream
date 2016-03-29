@@ -1,0 +1,89 @@
+yii2 验证码详细代码
+控制器 层 LoginController.php
+
+<?php
+namespace app\controllers;
+use Yii;
+use yii\web\Controller;
+use app\models\Login;
+use app\models\ContactForm;
+class LoginController extends Controller
+{
+    public $enableCsrfValidation = false;
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+    public function actionLogin()
+    {
+        // 验证码
+        $verify = new Login();
+
+        return $this->render('login', [
+            'verify' => $verify,
+        ]);
+    }
+}
+
+
+
+
+models 层 Login.php
+
+<?php
+namespace app\models;
+use Yii;
+use yii\base\Model;
+class Login extends Model
+{
+    public $verifyCode;
+    /**
+     * @return array the validation rules.
+     */
+    public function rules()
+    {
+        return [
+            // verifyCode needs to be entered correctly
+            ['verifyCode', 'captcha'],
+        ];
+    }
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'verifyCode' => '验证码',
+        ];
+    }
+}
+
+
+
+view 层 login.php
+
+<?php
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
+?>
+<div class="row">
+    <div class="col-lg-5">
+        <form action="">
+        <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($verify, 'verifyCode')->widget(Captcha::className(), [
+            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+        ]) ?>
+        <?php ActiveForm::end(); ?>
+            // 这里面可以加你想要的任何表单
+            <input type="submit" class="btn" value="提交"/>
+        </form>
+    </div>
+</div>
