@@ -87,3 +87,4 @@ use yii\captcha\Captcha;
         </form>
     </div>
 </div>
+//http://www.yiichina.com/question/1317
