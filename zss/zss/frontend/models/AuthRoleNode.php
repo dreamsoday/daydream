@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -10,7 +10,7 @@ use Yii;
  * @property integer $role_id
  * @property integer $node_id
  */
-class AuthRoleNodel extends \yii\db\ActiveRecord
+class AuthRoleNode extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -26,7 +26,8 @@ class AuthRoleNodel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['node_id'], 'integer']
+            [['role_id'], 'required'],
+            [['role_id', 'node_id'], 'integer']
         ];
     }
 

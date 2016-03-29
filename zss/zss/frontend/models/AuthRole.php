@@ -12,7 +12,7 @@ use Yii;
  * @property integer $role_status
  * @property string $role_remark
  */
-class ZssAuthRole extends \yii\db\ActiveRecord
+class AuthRole extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -45,9 +45,5 @@ class ZssAuthRole extends \yii\db\ActiveRecord
             'role_status' => 'Role Status',
             'role_remark' => 'Role Remark',
         ];
-    }
-    //用户角色关联
-    public function getZssAuthAdminNode(){
-        return $this->hasOne(ZssAuthAdminNode::className(), ['role_id' => 'role_id']);
     }
 }

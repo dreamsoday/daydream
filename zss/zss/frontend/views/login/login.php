@@ -25,52 +25,52 @@
 <body class="loginpage">
 	<div class="loginbox">
     	<div class="loginboxinner">
-        	
+
             <div class="logo">
             	<h1 class="logo">宅食送.<span>Admin</span></h1>
 				<span class="slogan">后台管理系统</span>
             </div><!--logo-->
-            
+
             <br clear="all" /><br />
-            
+
             <!-- <div class="nousername">
                             <div class="loginmsg">密码不正确.</div>
             </div> --><!--nousername-->
-            
+
             <!-- <div class="nopassword">
                             <div class="loginmsg">用户名不正确.</div>
                 <div class="loginf">
                     <div class="thumb"><img alt="" src="assets/images/thumbs/avatar1.png" /></div>
                     <div class="userlogged">
                         <h4></h4>
-                        <a href="<?php echo Yii::$app->urlManager->createUrl('login/logsuccess')?>">Not <span></span>?</a> 
+                        <a href="<?php echo Yii::$app->urlManager->createUrl('login/logsuccess')?>">Not <span></span>?</a>
                     </div>
                 </div>loginf
             </div> --><!--nopassword-->
-            
+
                 <div class="username">
                 	<div class="usernameinner">
                     	<input type="text" name="username" id="username" />
                     </div>
                 </div>
-                
+
                 <div class="password">
                 	<div class="passwordinner">
                     	<input type="password" name="password" id="password" />
                     </div>
                 </div>
                 <button>登录</button>
-                
-            
+
+
             <script>
             //全局变量：统计密码错误次数
                // var error_cnt = 0;
                 /*
                 function login(){
                   //检查用户名是否为空
-                  
+
                   //假设正确密码为password，检查密码是否正确
-                  
+
                   if(document.getElementById("password").value!='123'){
                     alert("密码错误");
                     //先将错误次数自增1，然后判断是否大于等于3次
@@ -84,8 +84,8 @@
                     alert(username);
                 }
                 */
-                jQuery(document).ready(function($){
-                    $(document).on('click',':button',function(){
+                jQuery(document).ready(function(){
+                    jQuery(document).on('click',':button',function(){
                 if(document.getElementById("username").value==''){
                     alert("用户名不能为空");
                     return false;
@@ -98,7 +98,7 @@
                         var username=$("#username").val();
                         //alert(username);
                         var password=$("#password").val();
-                        $.ajax({
+                        jQuery.ajax({
                            type: "POST",
                            url: "<?php echo Yii::$app->urlManager->createUrl('login/proving')?>",
                            data: {'username':username,'password':password},
@@ -118,9 +118,9 @@
                         });
                     })
                 })
-                
+
             </script>
-            
+
         </div><!--loginboxinner-->
     </div><!--loginbox-->
 
